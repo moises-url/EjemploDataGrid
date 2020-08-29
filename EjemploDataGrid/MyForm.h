@@ -369,8 +369,7 @@ private: System::Void btnExportar_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void btnNuevaVentana_Click(System::Object^ sender, System::EventArgs^ e) {
 	TitleForm^ nuevaVentana = gcnew TitleForm();
-	nuevaVentana->AsignarTitulo(txtNuevaVentana->Text);
-	nuevaVentana->ShowDialog();
+
 }
 };
 }
