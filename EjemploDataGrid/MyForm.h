@@ -1,3 +1,4 @@
+#include "TitleForm1.h";
 #pragma once
 
 namespace EjemploDataGrid {
@@ -51,6 +52,8 @@ namespace EjemploDataGrid {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::OpenFileDialog^ ofdImportar;
 	private: System::Windows::Forms::SaveFileDialog^ sfdExportar;
+	private: System::Windows::Forms::Button^ btnNuevaVentana;
+	private: System::Windows::Forms::TextBox^ txtNuevaVentana;
 
 
 	private:
@@ -78,6 +81,8 @@ namespace EjemploDataGrid {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->ofdImportar = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->sfdExportar = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->btnNuevaVentana = (gcnew System::Windows::Forms::Button());
+			this->txtNuevaVentana = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvMatriz))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
@@ -178,11 +183,30 @@ namespace EjemploDataGrid {
 			// 
 			this->ofdImportar->FileName = L"openFileDialog1";
 			// 
+			// btnNuevaVentana
+			// 
+			this->btnNuevaVentana->Location = System::Drawing::Point(572, 540);
+			this->btnNuevaVentana->Name = L"btnNuevaVentana";
+			this->btnNuevaVentana->Size = System::Drawing::Size(122, 23);
+			this->btnNuevaVentana->TabIndex = 7;
+			this->btnNuevaVentana->Text = L"Abrir Ventana";
+			this->btnNuevaVentana->UseVisualStyleBackColor = true;
+			this->btnNuevaVentana->Click += gcnew System::EventHandler(this, &MyForm::btnNuevaVentana_Click);
+			// 
+			// txtNuevaVentana
+			// 
+			this->txtNuevaVentana->Location = System::Drawing::Point(449, 543);
+			this->txtNuevaVentana->Name = L"txtNuevaVentana";
+			this->txtNuevaVentana->Size = System::Drawing::Size(100, 20);
+			this->txtNuevaVentana->TabIndex = 8;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(750, 542);
+			this->ClientSize = System::Drawing::Size(750, 588);
+			this->Controls->Add(this->txtNuevaVentana);
+			this->Controls->Add(this->btnNuevaVentana);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->dgvMatriz);
 			this->Controls->Add(this->btnGenerar);
@@ -342,6 +366,11 @@ private: System::Void btnExportar_Click(System::Object^ sender, System::EventArg
 				, MessageBoxIcon::Exclamation);
 		}
 	}
+}
+private: System::Void btnNuevaVentana_Click(System::Object^ sender, System::EventArgs^ e) {
+	TitleForm^ nuevaVentana = gcnew TitleForm();
+	nuevaVentana->AsignarTitulo(txtNuevaVentana->Text);
+	nuevaVentana->ShowDialog();
 }
 };
 }
