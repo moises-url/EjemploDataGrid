@@ -35,13 +35,18 @@ namespace EjemploDataGrid {
 			}
 		}
 	private: System::Windows::Forms::Label^ lblTitulo;
+	private: System::Windows::Forms::Label^ lblSegundos;
+	private: System::Windows::Forms::Timer^ tmrEjemplo;
+
+	private: System::ComponentModel::IContainer^ components;
+
 	protected:
 
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -50,7 +55,10 @@ namespace EjemploDataGrid {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->lblTitulo = (gcnew System::Windows::Forms::Label());
+			this->lblSegundos = (gcnew System::Windows::Forms::Label());
+			this->tmrEjemplo = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
 			// 
 			// lblTitulo
@@ -65,11 +73,30 @@ namespace EjemploDataGrid {
 			this->lblTitulo->TabIndex = 0;
 			this->lblTitulo->Text = L"label1";
 			// 
+			// lblSegundos
+			// 
+			this->lblSegundos->AutoSize = true;
+			this->lblSegundos->Font = (gcnew System::Drawing::Font(L"Segoe Script", 26.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblSegundos->ForeColor = System::Drawing::Color::Navy;
+			this->lblSegundos->Location = System::Drawing::Point(181, 130);
+			this->lblSegundos->Name = L"lblSegundos";
+			this->lblSegundos->Size = System::Drawing::Size(51, 57);
+			this->lblSegundos->TabIndex = 1;
+			this->lblSegundos->Text = L"0";
+			// 
+			// tmrEjemplo
+			// 
+			this->tmrEjemplo->Enabled = true;
+			this->tmrEjemplo->Interval = 1000;
+			this->tmrEjemplo->Tick += gcnew System::EventHandler(this, &TitleForm::tmrEjemplo_Tick);
+			// 
 			// TitleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(460, 130);
+			this->ClientSize = System::Drawing::Size(463, 241);
+			this->Controls->Add(this->lblSegundos);
 			this->Controls->Add(this->lblTitulo);
 			this->Name = L"TitleForm";
 			this->Text = L"TitleForm";
@@ -81,6 +108,9 @@ namespace EjemploDataGrid {
 
 	public: void AsignarTitulo(String^ titulo) {
 		lblTitulo->Text = titulo;
+	}
+	private: System::Void tmrEjemplo_Tick(System::Object^ sender, System::EventArgs^ e) {
+		lblSegundos->Text = Convert::ToString(Convert::ToInt32(lblSegundos->Text) + 1);
 	}
 	};
 }
